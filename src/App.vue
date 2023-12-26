@@ -1,10 +1,10 @@
 <template>
   <Header />
   <div class="container">
-    <Balance :total="total" />
+    <Balance :total="+total" />
     <IncomeExpenses :income="+income" :expenses="+expenses" />
     <TransactionList :transactions="transactions" />
-    <AddTransaction />
+    <AddTransaction @transactionSubmited="handleTransactionSubmited" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@ import IncomeExpenses from './components/IncomeExpenses.vue'
 import TransactionList from './components/TransactionList.vue';
 import AddTransaction from './components/AddTransaction.vue';
 
-import { ref, computed } from 'vue';
+import { ref, computed, handleError } from 'vue';
 
 const transactions = ref([
       { id: 1, text: 'Flower', amount: -19.99 },
