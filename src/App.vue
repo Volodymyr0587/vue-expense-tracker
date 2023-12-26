@@ -64,6 +64,8 @@ const handleTransactionSubmited = (transactionData) => {
     amount: transactionData.amount
   });
 
+  saveTransactionsToLocalStorage();
+
   toast.success('Transaction added');
 };
 
@@ -76,6 +78,13 @@ const generateUniqueId = () => {
 const handleTransactionDeleted = (id) => {
   transactions.value = transactions.value.filter((transaction) => transaction.id !== id);
 
+  saveTransactionsToLocalStorage();
+  
   toast.success('Transaction deleted');
 };
+
+// Save to Local Storage
+const saveTransactionsToLocalStorage = () => {
+  localStorage.setItem('transactions', JSON.stringify(transactions.value));
+}
 </script>
